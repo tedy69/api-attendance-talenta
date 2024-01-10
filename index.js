@@ -153,7 +153,7 @@ const main = async (
   console.log('Signing in...');
   await Promise.all([
     page.click('#new-signin-button'),
-    page.waitForLoadState('networkidle'),
+    page.waitForNavigation(),
   ]);
 
   const dashboardNav = page.getByText('Dashboard');
