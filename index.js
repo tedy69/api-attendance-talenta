@@ -1,3 +1,4 @@
+const { spawnSync } = require('child_process');
 const express = require('express');
 const playwright = require('playwright-chromium');
 const dayjs = require('dayjs');
@@ -43,9 +44,7 @@ app.post('/', async (req, res) => {
   } catch (error) {
     console.error(error);
     // Return error message with status code 500 with json format
-    res
-      .status(500)
-      .json({ status_code: 500, message: 'Internal Server Error' });
+    res.status(500).json({ status_code: 500, message: error.message });
   }
 });
 
@@ -92,6 +91,9 @@ const main = async (
 ) => {
   let geoLatitude = '';
   let geoLongitude = '';
+
+  spawnSync('yarn', ['playwright', 'install', 'chromium']);
+  spawnSync('yarn', ['playwright', 'install-deps']);
 
   const isHeadless = process.env.HEADLESS_BROWSER === 'true';
 
@@ -143,15 +145,15 @@ const main = async (
 
   console.log('Filling in account email & password...');
   await page.click('#user_email');
-  await page.type('#user_email', accountEmail);
+  await page.fill('#user_email', accountEmail);
 
   await page.press('#user_email', 'Tab');
-  await page.type('#user_password', accountPassword);
+  await page.fill('#user_password', accountPassword); // Updated code
 
   console.log('Signing in...');
   await Promise.all([
     page.click('#new-signin-button'),
-    page.waitForNavigation(),
+    page.waitForLoadState('networkidle'),
   ]);
 
   const dashboardNav = page.getByText('Dashboard');
