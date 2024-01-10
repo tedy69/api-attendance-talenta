@@ -43,7 +43,9 @@ app.post('/', async (req, res) => {
   } catch (error) {
     console.error(error);
     // Return error message with status code 500 with json format
-    res.status(500).json({ status_code: 500, message: error.message });
+    res
+      .status(500)
+      .json({ status_code: 500, message: 'Internal Server Error' });
   }
 });
 
