@@ -49,7 +49,7 @@ Welcome to the Attendance Talenta API! This API enables you to manage employee a
 
 ## Request and Response Examples
 
-### Check-In (POST /api/checkin)
+### Check-In (POST /)
 
 **Request:**
 
