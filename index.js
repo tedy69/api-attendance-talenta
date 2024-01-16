@@ -1,4 +1,3 @@
-const { spawnSync } = require('child_process');
 const express = require('express');
 const playwright = require('playwright-chromium');
 const dayjs = require('dayjs');
@@ -17,7 +16,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(({ origin: true, credentials: true })));
 
 app.post('/', async (req, res) => {
   try {
@@ -91,9 +90,6 @@ const main = async (
 ) => {
   let geoLatitude = '';
   let geoLongitude = '';
-
-  spawnSync('yarn', ['playwright', 'install', 'chromium']);
-  spawnSync('yarn', ['playwright', 'install-deps']);
 
   const isHeadless = process.env.HEADLESS_BROWSER === 'true';
 
@@ -243,6 +239,8 @@ const prepForm = (obj) => {
 const attendancePost = async (config) => {
   const resp = await axios(config);
 
+  console.log(resp.data)
+  
   return resp.data;
 };
 
