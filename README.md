@@ -1,6 +1,6 @@
 # Attendance Talenta API
 
-Welcome to the Attendance Talenta API! This API enables you to manage employee attendance using the Talenta platform. Simplify workforce management and effortlessly track check-ins and check-outs.
+Welcome to the Attendance Talenta API! This API enables you Check-in/check-out from anywhere, not limited to office location.
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ Welcome to the Attendance Talenta API! This API enables you to manage employee a
 
 ## Features
 
-- **Check-In and Check-Out:** Check-in/check-out from anywhere, not limited to office location.
+- **Check-In and Check-Out:** Check-in/check-out from anywhere.
 
 ## Getting Started
 
